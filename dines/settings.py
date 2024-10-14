@@ -28,9 +28,13 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 load_dotenv(os.path.join(BASE_DIR, 'dines/.env'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-kamenco-dinestwo-59f110z66qn.ws.codeinstitute-ide.net']
+
+
+DJANGO_USERNAME = os.getenv('DJANGO_USERNAME')
+DJANGO_PASSWORD = os.getenv('DJANGO_PASSWORD')
 
 
 # Application definition
@@ -46,6 +50,7 @@ INSTALLED_APPS = [
     'menu',
     'contact',
     'task',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +142,10 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# for the development server
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-kamenco-dinestwo-59f110z66qn.ws.codeinstitute-ide.net'
+]
