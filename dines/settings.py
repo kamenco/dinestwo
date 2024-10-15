@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 load_dotenv(os.path.join(BASE_DIR, 'dines/.env'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-kamenco-dinestwo-59f110z66qn.ws.codeinstitute-ide.net']
 
