@@ -13,6 +13,15 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import cloudinary_storage
+
+
+# Load .env file
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,7 +37,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 load_dotenv(os.path.join(BASE_DIR, 'dines/.env'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-kamenco-dinestwo-59f110z66qn.ws.codeinstitute-ide.net']
 
@@ -51,6 +60,8 @@ INSTALLED_APPS = [
     'contact',
     'task',
     'accounts',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -149,3 +160,34 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-kamenco-dinestwo-59f110z66qn.ws.codeinstitute-ide.net'
 ]
+# Cloudinary
+
+# Cloudinary settings
+
+
+import os
+from dotenv import load_dotenv
+
+# Load .env file
+load_dotenv()
+
+# Cloudinary settings
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUD_NAME'),
+    'API_KEY': os.getenv('API_KEY'),
+    'API_SECRET': os.getenv('API_SECRET'),
+}
+
+
+# Configure Django to use Cloudinary for media files
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+
+# Media files (user uploads like menu images)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Static root for deployment
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
