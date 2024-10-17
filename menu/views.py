@@ -1,13 +1,28 @@
 from django.shortcuts import render, redirect
 from .forms import MenuItemForm
+from .models import MenuItem
+
 
 # Create your views here.
 
-def menu(request):
-    return render(request, 'menu/menu.html')  # Create menu.html template in menu/templates/menu/
+# Create menu.html template in menu/templates/menu/
 
-from django.shortcuts import render, redirect
-from .forms import MenuItemForm
+def menu(request):
+    category = request.GET.get('category')  # Get the category filter from the form
+    if category:
+        # Filter recipes based on the selected category
+        recipes = MenuItem.objects.filter(category=category)
+    else:
+        # Fetch all recipes if no category is selected
+        recipes = MenuItem.objects.all()
+
+    context = {
+        'list': recipes,  # Pass the list of recipes to the template
+        'page_title': 'Menu',
+    }
+    return render(request, 'menu/menu.html', context)
+  
+
 
 def update_menu(request):
     if request.method == 'POST':
@@ -33,4 +48,3 @@ def add_menu_item(request):
     else:
         form = MenuItemForm()
     return render(request, 'add_menu_item.html', {'form': form})
-

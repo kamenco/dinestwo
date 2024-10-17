@@ -20,7 +20,22 @@
     <div>
         {% for recipe in list %}
             <div class="recipe-item">
-                <img src="{{ recipe.image }}" alt="Image of {{ recipe.name }}" class="img-fluid">
+                <img src="{{ recipe.image.url }}" alt="Image of {{ recipe.name }}" class="img-fluid">
+                <h3>{{ recipe.name }}</h3>
+                <p>{{ recipe.description }}</p>
+                <p><strong>Price: ${{ recipe.price }}</strong></p>  <!-- Display price -->
+            </div>
+        {% endfor %}
+        {% if not list %}
+            <p>No recipes found.</p>
+        {% endif %}
+    </div>
+</div>
+
+    <div>
+        {% for recipe in list %}
+            <div class="recipe-item">
+                <img src="{{ recipe.image.url }}" alt="Image of {{ recipe.name }}" class="img-fluid">
                 <h3>{{ recipe.name }}</h3>
                 <p>{{ recipe.description }}</p>
             </div>
