@@ -39,14 +39,15 @@
     
     <hr>
     <form method="post" action="{% url 'update_menu' %}" enctype="multipart/form-data" onsubmit="return confirmDeleteRecipe(event)">
+        {% csrf_token %}
         <h3>Delete Recipe</h3>
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="recipe_name">Recipe Name:</label>
-                    <select class="form-control" id="recipe_name" name="recipe_name" required>
+                    <label for="recipe_id">Recipe:</label>
+                    <select class="form-control" id="recipe_id" name="recipe_id" required>
                         {% for item in list %}
-                            <option value="{{ item.name }}">{{ item.name }}</option>
+                            <option value="{{ item.id }}">{{ item.name }}</option>  <!-- Use item.id instead of name -->
                         {% endfor %}
                     </select>
                 </div>               
@@ -54,6 +55,7 @@
             </div>
         </div>
     </form>
+    
 </div>
 {% endblock %}
 
