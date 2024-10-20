@@ -32,7 +32,11 @@
       border-radius: 0;
       background-color: #F53E3F;
       font-weight: 900;
-    }
+      padding-top: 0;
+      padding-bottom: 0;
+      height: auto;
+    } 
+
     .navbar-brand {
       padding-left: 2px;
       padding-top: 2px;
@@ -54,15 +58,32 @@
       height: 70px;
     }
     
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
+    /* Main container adjustments */
+/* Main container using Flexbox */
+/*
+.container-fluid {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;   
+}*/
+    /* Only apply Flexbox to the content area */
+
+.row.content {
+  display: flex;        
+  flex: 1;              
+  height: auto;         
+} 
+
     
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
+    /* Sidebar adjustments */
+
+.sidenav {
+  background-color: #f1f1f1;
+  padding-top: 20px;
+  flex: 1;              /* Allow the sidebar to fill the vertical space */
+  min-height: 100%;    /* Ensure the sidebar extends to the footer */
+}
+
     .nav-item, li:active {
       background-color: #F29C9D;
     }
@@ -72,11 +93,12 @@
     background: url("../images/tableset.webp") no-repeat center 80%/cover;
    }
     /* Set black background color, white text and some padding for the footer */
-    footer {
-      background-color: #F53E3F;
-      color: white;
-      padding: 15px;
-    }
+    /* Footer adjustments to prevent stretching */
+footer.container-fluid.text-center {
+  padding: 10px 0;      /* Adjust padding to prevent thickness */
+  background-color: #F53E3F;
+  color: white;
+}
     #social-networks {
       text-align: center;
       padding: 20px 0;
@@ -141,12 +163,11 @@
       font-weight: 900;
     }
     .text_thin{
-      font-size: 30px;
+      font-weight: bold;
+      font-size: 12px;
       color: #554f4f;
       text-align: center;
       font-family: 'Exo' sans-serif;
-      font-weight: 500;
-
     }
     .text-footer{
       color:#fafafa;
@@ -227,7 +248,7 @@ textarea:hover {
 
 iframe {
   width: 780px;
-  height: 300px;
+  height: 235px;
 }
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
