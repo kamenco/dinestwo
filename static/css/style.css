@@ -253,10 +253,34 @@ iframe {
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
-        height: auto;
-        padding: 15px;
+          text-align: center;
+          padding-top: 20px;
+          background-color: #f1f1f1;
+          height: auto;
+          flex-direction: row; /* Display columns as rows */
+          display: flex; /* Enable flexbox */
+          width: 100%;
       }
-      .row.content {height:auto;} 
+      #info {
+        text-align: center;
+        width: 100%;
+        display: block;
+      }
+      .col-sm-2.sidenav {
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+    }
+      .col-sm-2.sidenav .well {
+        display: block;
+        width: 100%; /* Make the wells take the full width */
+        margin-bottom: 15px; /* Add spacing between wells */
+    }
+      .row.content {
+        height:auto;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      } 
     }
 
     @media screen and (max-width: 767px) {
