@@ -18,7 +18,6 @@ import cloudinary.uploader
 import cloudinary.api
 import cloudinary_storage
 
-
 # Load .env file
 load_dotenv()
 
@@ -72,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'dines.urls'
@@ -147,8 +147,6 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -165,19 +163,12 @@ CSRF_TRUSTED_ORIGINS = [
 # Cloudinary settings
 
 
-import os
-from dotenv import load_dotenv
-
-# Load .env file
-load_dotenv()
-
 # Cloudinary settings
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUD_NAME'),
     'API_KEY': os.getenv('API_KEY'),
     'API_SECRET': os.getenv('API_SECRET'),
 }
-
 
 # Configure Django to use Cloudinary for media files
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
@@ -191,3 +182,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Static root for deployment
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# deployment to heroku
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Static files (CSS, JavaScript, Images)
+
+# Adding Whitenoise middleware
+
+# Static files storage
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
