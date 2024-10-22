@@ -2,6 +2,8 @@
 {% block content %}
 <div class="container mt-5">
     <h2 class="text-center">{{ page_title }}</h2>
+    
+    <!-- Form for adding new recipe -->
     <form method="post" action="{% url 'update_menu' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <h3>Add New Recipe</h3>
@@ -38,46 +40,41 @@
     </form>
     
     <hr>
-    <form method="post" action="{% url 'update_menu' %}" enctype="multipart/form-data" onsubmit="return confirmDeleteRecipe(event)">
+    
+    <!-- Form for deleting a recipe -->
+    <form id="delete-form" method="post" action="#" onsubmit="return confirmDelete(event)" enctype="multipart/form-data">
         {% csrf_token %}
         <h3>Delete Recipe</h3>
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="recipe_id">Recipe:</label>
-                    <select class="form-control" id="recipe_id" name="recipe_id" required>
-                        {% for item in list %}
-                            <option value="{{ item.id }}">{{ item.name }}</option>  <!-- Use item.id instead of name -->
+                    <label for="menu_item_id">Recipe:</label>
+                    <select class="form-control" id="menu_item_id" name="menu_item_id" required onchange="updateDeleteFormAction(this.value)">
+                        <option value="" disabled selected>Select a recipe to delete</option>
+                        {% for menu_item in list %}
+                            <option value="{{ menu_item.id }}">{{ menu_item.name }}</option>
                         {% endfor %}
                     </select>
-                </div>               
+                </div>   
                 <button type="submit" name="delete" class="btn btn-danger btn-block">Delete Recipe</button>
             </div>
         </div>
     </form>
     
+    
 </div>
 {% endblock %}
 
 {% block scripts %}
+
 <script>
-    function confirmDeleteRecipe(event) {
-        event.preventDefault();
-        const form = event.target;
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "Do you really want to delete the recipe?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                form.submit();
-            }
-        });
-        return false;
+    function updateDeleteFormAction(menuItemId) {
+        const form = document.getElementById('delete-form');
+        const actionUrl = "{% url 'delete_menu_item' 0 %}".replace('0', menuItemId);
+        form.action = actionUrl;  // Update the form action with the selected menu item ID
+        console.log("Form action updated to:", form.action);  // Debugging output
     }
 </script>
+
+
 {% endblock %}

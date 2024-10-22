@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     const csrfToken = "{{ csrf_token }}";
 </script>
@@ -125,5 +126,15 @@
     </ul>
   </footer>
   <hr>
+  {% block scripts %}
+  <script>
+    function updateDeleteFormAction(menuItemId) {
+        const form = document.getElementById('delete-form');
+        const actionUrl = "{% url 'delete_menu_item' 0 %}".replace('0', menuItemId);
+        form.action = actionUrl;  // Update the form action with the selected menu item ID
+        console.log("Form action updated to:", form.action);  // Debugging output
+    }
+</script>
+    {% endblock %}
 </body>
 </html>

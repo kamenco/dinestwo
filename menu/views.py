@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import MenuItemForm
 from .models import MenuItem
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib import messages
 
 
 # Create your views here.
@@ -22,41 +23,26 @@ def menu(request):
         'page_title': 'Menu',
     }
     return render(request, 'menu/menu.html', context)
-  
+
 
 def update_menu(request):
-    if request.method == 'POST':
-        # Check if the add button was clicked
-        if 'add' in request.POST:
-            form = MenuItemForm(request.POST, request.FILES)
-            if form.is_valid():
-                form.save()
-                return redirect('menu')  # Redirect to the menu page after submission
+    form = MenuItemForm()  # Initialize the form for adding new items
 
-        # Check if the delete button was clicked
-        elif 'delete' in request.POST:
-            recipe_id = request.POST.get('recipe_id')  # Get the recipe ID from the form
-            if recipe_id:
-                try:
-                    recipe = MenuItem.objects.get(id=recipe_id)  # Find the recipe by ID
-                    recipe.delete()
-                    return redirect('update_menu')
-                except MenuItem.DoesNotExist:
-                    context = {
-                        'form': MenuItemForm(),
-                        'list': MenuItem.objects.all(),
-                        'error_message': 'Recipe not found.'
-                    }
-                    return render(request, 'menu/update_menu.html', context)
-
-    else:
-        form = MenuItemForm()
+    if request.method == 'POST' and 'add' in request.POST:
+        form = MenuItemForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Menu item successfully added!")
+            return redirect('menu')  # Redirect to the menu page after adding the item
 
     context = {
         'form': form,
         'list': MenuItem.objects.all(),  # Pass the list of menu items for deletion
     }
     return render(request, 'menu/update_menu.html', context)
+
+
+
 
 
 def add_menu_item(request):
@@ -78,3 +64,13 @@ def menu_item_detail(request, item_id):
         'page_title': recipe.name,
     }
     return render(request, 'menu/menu_item_detail.html', context)
+
+def delete_menu_item(request, menu_item_id):
+    
+    menu_item = get_object_or_404(MenuItem, id=menu_item_id)
+    if request.method == 'POST':
+        menu_item.delete()
+        messages.success(request, "Menu item successfully deleted!")
+        return redirect('update_menu')
+
+
