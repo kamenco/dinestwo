@@ -36,7 +36,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # Load .env file
 load_dotenv(os.path.join(BASE_DIR, 'dines/.env'))
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = ['8000-kamenco-dinestwo-59f110z66qn.ws.codeinstitute-ide.net', 'dinesdj-cb401df90931.herokuapp.com', 'localhost', '127.0.0.1']
