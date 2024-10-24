@@ -60,8 +60,9 @@ INSTALLED_APPS = [
     'contact',
     'task',
     'accounts',
-    'cloudinary',
     'cloudinary_storage',
+    'django.contrib.sites',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
