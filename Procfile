@@ -1,1 +1,1 @@
-web: gunicorn dinesdj.wsgi:application --log-file -
+web: gunicorn dines.wsgi:application
