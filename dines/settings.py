@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
+from .env import *  # Assuming your environment variables are imported here
 
 import cloudinary
 import cloudinary.uploader
@@ -39,7 +40,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # load_dotenv(os.path.join(BASE_DIR, 'dines/.env'))
 
 # SECURITY WARNING: don't run with debug debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-kamenco-dinestwo-59f110z66qn.ws.codeinstitute-ide.net', 'dinesdj-cb401df90931.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -110,6 +111,17 @@ WSGI_APPLICATION = 'dines.wsgi.application'
 #    }
 # }
 
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -207,4 +219,22 @@ DATABASES = {
     'default': dj_database_url.config(
         default=os.getenv('DATABASE_URL')  # This will pull your Postgres URL from the .env file
     )
+}
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
 }
