@@ -174,7 +174,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-kamenco-dinestwo-59f110z66qn.ws.codeinstitute-ide.net'
 ]
-# Cloudinary
+# Clouinary
 
 # Cloudinary settings
 
