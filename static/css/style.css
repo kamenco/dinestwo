@@ -159,21 +159,21 @@ footer.container-fluid.text-center {
       font-size: 30px;
       color: #554f4f;
       text-align: center;
-      font-family: 'Roboto' sans-serif;
+      font-family: 'Roboto', sans-serif;
       font-weight: 900;
     }
     .text_thin{
       font-weight: bold;
-      font-size: 12px;
+      font-size: 16px;
       color: #554f4f;
       text-align: center;
-      font-family: 'Exo' sans-serif;
+      font-family: 'Exo', sans-serif;
     }
     .text-footer{
       color:#fafafa;
       font-size: 15px;
       text-align: center;
-      font-family: 'Roboto' sans-serif;
+      font-family: 'Roboto', sans-serif;
       font-weight: 300;
     }
 

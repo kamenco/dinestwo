@@ -3,6 +3,7 @@ from .forms import MenuItemForm
 from .models import MenuItem
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -24,7 +25,7 @@ def menu(request):
     }
     return render(request, 'menu/menu.html', context)
 
-
+@login_required
 def update_menu(request):
     form = MenuItemForm()  # Initialize the form for adding new items
 
@@ -44,7 +45,7 @@ def update_menu(request):
 
 
 
-
+@login_required
 def add_menu_item(request):
     if request.method == 'POST':
         form = MenuItemForm(request.POST, request.FILES)
@@ -56,7 +57,7 @@ def add_menu_item(request):
     return render(request, 'add_menu_item.html', {'form': form})
 
     
-
+@login_required
 def menu_item_detail(request, item_id):
     recipe = get_object_or_404(MenuItem, id=item_id)
     context = {
@@ -65,6 +66,7 @@ def menu_item_detail(request, item_id):
     }
     return render(request, 'menu/menu_item_detail.html', context)
 
+@login_required
 def delete_menu_item(request, menu_item_id):
     
     menu_item = get_object_or_404(MenuItem, id=menu_item_id)
@@ -72,5 +74,7 @@ def delete_menu_item(request, menu_item_id):
         menu_item.delete()
         messages.success(request, "Menu item successfully deleted!")
         return redirect('update_menu')
+
+
 
 
