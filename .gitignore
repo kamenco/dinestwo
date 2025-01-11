@@ -21,3 +21,5 @@ db.sqlite3
 
 # IDE settings (optional)
 .vscode/
+
+env.py

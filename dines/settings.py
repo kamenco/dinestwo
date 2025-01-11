@@ -18,7 +18,7 @@ import cloudinary.api
 import cloudinary_storage
 import dj_database_url
 import env
-
+import sys
 # Load .env file
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,15 +38,20 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # Load .env file
 # load_dotenv(os.path.join(BASE_DIR, 'dines/.env'))
 
-# SECURITY WARNING: don't run with debug debug turned on in production!
-DEBUG = False
+# Load DEBUG from environment variables, default to True if not set
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['8000-kamenco-dinestwo-59f110z66qn.ws.codeinstitute-ide.net', 'dinesdj-cb401df90931.herokuapp.com', 'localhost', '127.0.0.1']
+# Load ALLOWED_HOSTS from environment variables, default to an empty list if not set
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
+# Import env.py to load environment variables
+try:
+    import env
+except ImportError:
+    sys.stderr.write("env.py not found. Make sure it's in the root directory.\n")
 
 DJANGO_USERNAME = os.getenv('DJANGO_USERNAME')
 DJANGO_PASSWORD = os.getenv('DJANGO_PASSWORD')
-
 
 # Application definition
 
@@ -234,3 +239,5 @@ LOGGING = {
         },
     },
 }
+
+print("env.py loaded successfully")
