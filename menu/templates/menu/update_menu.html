@@ -1,68 +1,76 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-5">
-    <h2 class="text-center">{{ page_title }}</h2>
-    
-    <!-- Form for adding new recipe -->
-    <form method="post" action="{% url 'update_menu' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h3>Add New Recipe</h3>
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+    <div class="card shadow p-4">
+        <h2 class="text-center text-primary">{{ page_title }}</h2>
+
+        <!-- Form for adding new recipe -->
+        <form method="post" action="{% url 'update_menu' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3 class="text-success text-center mb-4">Add New Recipe</h3>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="name"><strong>Name:</strong></label>
+                        <input type="text" class="form-control border border-primary" id="name" name="name" required placeholder="Enter recipe name">
+                    </div>
+                    <div class="form-group">
+                        <label for="description"><strong>Description:</strong></label>
+                        <textarea class="form-control border border-primary" id="description" name="description" rows="3" required placeholder="Enter recipe description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="price"><strong>Price:</strong></label>
+                        <input type="number" class="form-control border border-primary" id="price" name="price" step="0.01" required placeholder="Enter recipe price">
+                    </div>
+                    <div class="form-group">
+                        <label for="image"><strong>Image:</strong></label>
+                        <input type="file" class="form-control border border-primary" id="image" name="image" accept="image/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category"><strong>Category:</strong></label>
+                        <select class="form-control border border-primary" id="category" name="category" required>
+                            <option value="" disabled selected>Select a category</option>
+                            <option value="main_course">Main Course</option>
+                            <option value="salad">Salad</option>
+                            <option value="soup">Soup</option>
+                            <option value="dessert">Dessert</option>
+                        </select>
+                    </div>
+                    <button type="submit" name="add" class="btn btn-primary btn-lg btn-block mt-3">
+                        <i class="fa fa-plus-circle"></i> Add Recipe
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label for="description">Description:</label>
-                    <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="price">Price:</label>
-                    <input type="number" class="form-control" id="price" name="price" step="0.01" required>
-                </div>
-                <div class="form-group">
-                    <label for="image">Image:</label>
-                    <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
-                </div>
-                <div class="form-group">
-                    <label for="category">Category:</label>
-                    <select class="form-control" id="category" name="category" required>
-                        <option value="main_course">Main Course</option>
-                        <option value="salad">Salad</option>
-                        <option value="soup">Soup</option>
-                        <option value="dessert">Dessert</option>
-                    </select>
-                </div>
-                <button type="submit" name="add" class="btn btn-primary btn-block">Add Recipe</button>
             </div>
-        </div>
-    </form>
-    
-    <hr>
-    
-    <!-- Form for deleting a recipe -->
-    <form id="delete-form" method="post" action="#" onsubmit="return confirmDelete(event)" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h3>Delete Recipe</h3>
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="menu_item_id">Recipe:</label>
-                    <select class="form-control" id="menu_item_id" name="menu_item_id" required onchange="updateDeleteFormAction(this.value)">
-                        <option value="" disabled selected>Select a recipe to delete</option>
-                        {% for menu_item in list %}
-                            <option value="{{ menu_item.id }}">{{ menu_item.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>   
-                <button type="submit" name="delete" class="btn btn-danger btn-block">Delete Recipe</button>
+        </form>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="card shadow p-4">
+        <!-- Form for deleting a recipe -->
+        <form id="delete-form" method="post" action="#" onsubmit="return confirmDelete(event)">
+            {% csrf_token %}
+            <h3 class="text-danger text-center mb-4">Delete Recipe</h3>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="menu_item_id"><strong>Recipe:</strong></label>
+                        <select class="form-control border border-danger" id="menu_item_id" name="menu_item_id" required onchange="updateDeleteFormAction(this.value)">
+                            <option value="" disabled selected>Select a recipe to delete</option>
+                            {% for menu_item in list %}
+                                <option value="{{ menu_item.id }}">{{ menu_item.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" name="delete" class="btn btn-danger btn-lg btn-block mt-3">
+                        <i class="fa fa-trash"></i> Delete Recipe
+                    </button>
+                </div>
             </div>
-        </div>
-    </form>
-    
-    
+        </form>
+    </div>
 </div>
+
 {% endblock %}
 
 {% block scripts %}

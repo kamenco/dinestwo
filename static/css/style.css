@@ -256,6 +256,42 @@ iframe {
   width: 780px;
   height: 235px;
 }
+
+/*========================================================Styling the update_menu.html*/
+/*.container {
+  max-width: 700px;
+  margin: auto;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+.btn-block {
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-block:hover {
+  transform: scale(1.05);
+}
+
+hr {
+  border: 1px solid #ddd;
+}
+
+h2, h3 {
+  font-weight: bold;
+}*/
+
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {

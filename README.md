@@ -96,6 +96,10 @@ Given more time to invest in the project, I would like to implement some more fe
 - To fulfil authomatic testing. For now only manual testing is carried out.  
 - This project can target restaurant owners and catering services.
 - This project has a registration link from the login of the customers to be directed to the forum, blog application from where they can make comments of the service. This application will be built in the future.
+- Enhancements of the view specific viewports for Add and Delete recepies.
+- Progress bar: When uploading an image.
+- Pagination: If the menu grows in size.
+- Search/filter: For easier management of recipes.
   
  ---
  
