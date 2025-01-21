@@ -3,6 +3,12 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700|Exo:100,200,300,400,500,600,700');
 
 
+/* Ensure the body takes at least the full height of the viewport */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 /*------------------------------------------------------------------------HEADER*/
 #head {
@@ -60,16 +66,16 @@
     
     /* Main container adjustments */
 /* Main container using Flexbox */
-/*
-.container-fluid {
+
+/*.container-fluid {
   display: flex;
   flex-direction: column;
-  min-height: 100%;   
+  min-height: 100%;  
 }*/
     /* Only apply Flexbox to the content area */
 
 .row.content {
-  display: flex;        
+  display: flex;       
   flex: 1;              
   height: auto;         
 } 
