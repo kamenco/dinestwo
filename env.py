@@ -10,5 +10,7 @@ os.environ['DATABASE_URL']= 'postgresql://neondb_owner:IYQdh0FxGV8A@ep-morning-b
 
  # Set to 'True' for local development, 'False' for production
 
+os.environ['DEBUG'] = 'False'  # Change to 'True' if you want to enable debugging
+
 
 
