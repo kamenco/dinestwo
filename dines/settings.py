@@ -40,7 +40,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # load_dotenv(os.path.join(BASE_DIR, 'dines/.env'))
 
 # Load DEBUG from environment variables, default to True if not set
-DEBUG = False
+DEBUG = True
 
 # Load ALLOWED_HOSTS from environment variables, default to an empty list if not set
 
