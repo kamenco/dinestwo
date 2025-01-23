@@ -9,9 +9,10 @@
     {% for task in tasks %}
         <li>
             <strong>{{ task.task_name }}</strong> - {{ task.task_description }} - {{ task.due_date }} -
-            <span style="color: {% if task.is_urgent %}red{% else %}green{% endif %};">
+            <span class="{% if task.is_urgent %}text-danger{% else %}text-success{% endif %}">
                 {% if task.is_urgent %}Urgent{% else %}Not-urgent{% endif %}
-            </span>
+            </span>            
+            
             <a href="{% url 'update_task' task_id=task.id %}">Edit</a>
             <a href="#" data-task-id="{{ task.id }}" class="delete-link">Delete</a>
         </li>
