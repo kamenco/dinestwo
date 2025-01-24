@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm  # Correct import for the form
 from django.contrib import messages
+from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -43,3 +45,12 @@ def user_registration(request):
         form = UserCreationForm()
     
     return render(request, 'accounts/registration.html', {'form': form})
+
+# Redirect users based on their role
+
+@login_required
+def dashboard_redirect(request):
+    if request.user.is_superuser:
+        return redirect('update_menu')
+    else:
+        return redirect('customer_dashboard')

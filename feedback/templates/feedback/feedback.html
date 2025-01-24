@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Feedback</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <textarea name="comment" class="form-control" placeholder="Leave your feedback..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+
+    <h3 class="mt-4">All Feedback</h3>
+    <ul class="list-group">
+        {% for feedback in feedbacks %}
+            <li class="list-group-item">
+                <strong>{{ feedback.user.username }}:</strong> {{ feedback.comment }}
+                {% if feedback.user == request.user %}
+                    <a href="{% url 'delete_feedback' feedback.id %}" class="btn btn-danger btn-sm float-right">Delete</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
