@@ -3,6 +3,12 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700|Exo:100,200,300,400,500,600,700');
 
 
+/* Ensure the body takes at least the full height of the viewport */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 /*------------------------------------------------------------------------HEADER*/
 #head {
@@ -60,16 +66,16 @@
     
     /* Main container adjustments */
 /* Main container using Flexbox */
-/*
-.container-fluid {
+
+/*.container-fluid {
   display: flex;
   flex-direction: column;
-  min-height: 100%;   
+  min-height: 100%;  
 }*/
     /* Only apply Flexbox to the content area */
 
 .row.content {
-  display: flex;        
+  display: flex;       
   flex: 1;              
   height: auto;         
 } 
@@ -159,21 +165,21 @@ footer.container-fluid.text-center {
       font-size: 30px;
       color: #554f4f;
       text-align: center;
-      font-family: 'Roboto' sans-serif;
+      font-family: 'Roboto', sans-serif;
       font-weight: 900;
     }
     .text_thin{
       font-weight: bold;
-      font-size: 12px;
+      font-size: 16px;
       color: #554f4f;
       text-align: center;
-      font-family: 'Exo' sans-serif;
+      font-family: 'Exo', sans-serif;
     }
     .text-footer{
       color:#fafafa;
       font-size: 15px;
       text-align: center;
-      font-family: 'Roboto' sans-serif;
+      font-family: 'Roboto', sans-serif;
       font-weight: 300;
     }
 
@@ -250,6 +256,45 @@ iframe {
   width: 780px;
   height: 235px;
 }
+
+/*========================================================Styling the update_menu.html*/
+/*.container {
+  max-width: 700px;
+  margin: auto;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+.btn-block {
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-block:hover {
+  transform: scale(1.05);
+}
+
+hr {
+  border: 1px solid #ddd;
+}
+
+h2, h3 {
+  font-weight: bold;
+}*/
+/*==================================================================styling the urgent non-urgent in tasks.hrm;*/
+.text-danger { color: red; }
+.text-success { color: green; }
+
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {

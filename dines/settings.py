@@ -46,7 +46,12 @@ DEBUG = os.getenv('DEBUG') == 'True'
 
 # Load ALLOWED_HOSTS from environment variables, default to an empty list if not set
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'kamenco-dinestwo-4ajy04o7udd.ws-eu117.gitpod.io',
+    '8000-kamenco-dinestwo-4ajy04o7udd.ws-eu117.gitpod.io',
+    'localhost',
+    '127.0.0.1'
+]
 
 # Import env.py to load environment variables
 try:
@@ -74,6 +79,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.sites',
     'cloudinary',
+    'feedback',
 ]
 
 MIDDLEWARE = [

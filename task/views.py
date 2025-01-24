@@ -2,12 +2,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Task
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 
 # Create your views here.
 @login_required
 def tasks(request):
     all_tasks = Task.objects.all()
     return render(request, 'task/tasks.html', {'tasks': all_tasks})
+ 
   # Create menu.html template in menu/templates/menu/
 
 @login_required
@@ -48,4 +50,13 @@ def delete_task(request, task_id):
     task.delete()
     return redirect('tasks')
 
+#  Ensure permissions in the views for customers
+
+def superuser_required(view_func):
+    return user_passes_test(lambda u: u.is_superuser)(view_func)
+
+@superuser_required
+def update_menu(request):
+    # logic here
+    return render(request, 'menu/update_menu.html')
 
