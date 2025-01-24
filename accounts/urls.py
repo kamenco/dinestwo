@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import dashboard_redirect
 
 urlpatterns = [
     path('login/', views.user_login, name='login'),

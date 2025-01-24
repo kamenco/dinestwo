@@ -44,12 +44,18 @@
         <ul class="nav navbar-nav navbar-right">
           {% if request.user.is_authenticated %}
               <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-              <li><a href="{% url 'update_menu' %}"><span class="glyphicon glyphicon-pencil"></span> Update Menu</a></li>
-              <li><a href="{% url 'tasks' %}"><span class="glyphicon glyphicon-tasks"></span> Tasks</a></li>
+        
+              {% if request.user.is_superuser %}
+                  <li><a href="{% url 'update_menu' %}"><span class="glyphicon glyphicon-pencil"></span> Update Menu</a></li>
+                  <li><a href="{% url 'tasks' %}"><span class="glyphicon glyphicon-tasks"></span> Tasks</a></li>
+              {% endif %}
+              
+              <li><a href="{% url 'feedback' %}"><span class="glyphicon glyphicon-comment"></span> Feedback</a></li>
+        
           {% else %}
               <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           {% endif %}
-      </ul>
+        </ul>        
       
       </div>
     </div>

@@ -50,8 +50,7 @@ def user_registration(request):
 
 @login_required
 def dashboard_redirect(request):
-    from django.urls import reverse  # Avoid circular imports
     if request.user.is_superuser:
-        return redirect(reverse('update_menu'))
+        return redirect('update_menu')  # Redirect superus
     else:
-        return redirect(reverse('customer_dashboard'))
+        return redirect('customer_dashboard')  # Redirect regul
