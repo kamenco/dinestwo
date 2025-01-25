@@ -47,6 +47,7 @@ DEBUG = os.getenv('DEBUG') == 'True'
 # Load ALLOWED_HOSTS from environment variables, default to an empty list if not set
 
 ALLOWED_HOSTS = [
+    'dinesdj-cb401df90931.herokuapp.com',
     'kamenco-dinestwo-4ajy04o7udd.ws-eu117.gitpod.io',
     '8000-kamenco-dinestwo-4ajy04o7udd.ws-eu117.gitpod.io',
     'localhost',
