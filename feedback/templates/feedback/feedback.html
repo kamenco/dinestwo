@@ -2,25 +2,40 @@
 
 {% block content %}
 <div class="container">
-    <h2>Feedback</h2>
-    <form method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <textarea name="comment" class="form-control" placeholder="Leave your feedback..." required></textarea>
+    <h2 class="text-center">Feedback</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">  <!-- This limits width on medium/large screens -->
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="comment">Your Feedback:</label>
+                    <textarea name="comment" id="comment" class="form-control" 
+                              placeholder="Leave your feedback..." required style="resize: none;"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success btn-block">Submit</button>
+            </form>
         </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
+    </div>
 
-    <h3 class="mt-4">All Feedback</h3>
-    <ul class="list-group">
-        {% for feedback in feedbacks %}
-            <li class="list-group-item">
-                <strong>{{ feedback.user.username }}:</strong> {{ feedback.comment }}
-                {% if feedback.user == request.user %}
-                    <a href="{% url 'delete_feedback' feedback.id %}" class="btn btn-danger btn-sm float-right">Delete</a>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
+    <h3 class="mt-4 text-center">All Feedback</h3>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <ul class="list-group">
+                {% for feedback in feedbacks %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>{{ feedback.user.username }}:</strong> {{ feedback.comment }}
+                        </div>
+                        {% if feedback.user == request.user %}
+                            <a href="{% url 'delete_feedback' feedback.id %}" 
+                               class="btn btn-danger btn-sm">Delete</a>
+                        {% endif %}
+                    </li>
+                {% empty %}
+                    <li class="list-group-item text-center">No feedback yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </div>
 {% endblock %}
