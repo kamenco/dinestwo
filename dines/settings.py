@@ -204,6 +204,14 @@ CLOUDINARY_STORAGE = {
 # Configure Django to use Cloudinary for media files
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
+# New code added for gitpod 
+if not DEBUG:  # Ensure Cloudinary is used in production
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    MEDIA_URL = f'https://res.cloudinary.com/{os.getenv("CLOUDINARY_CLOUD_NAME")}/'
+else:
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 
