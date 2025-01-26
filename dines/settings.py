@@ -191,7 +191,6 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 # Clouinary
-
 # Cloudinary settings
 
 

@@ -37,6 +37,7 @@ def update_menu(request):
             return redirect('menu')  # Redirect to the menu page after adding the item
 
     context = {
+        'page_title': 'Update Menu',
         'form': form,
         'list': MenuItem.objects.all(),  # Pass the list of menu items for deletion
     }
