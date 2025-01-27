@@ -32,6 +32,115 @@
 
 Varna Eats is a web application that allows users to view the menu, make reservations, and manage tasks. This project is built using Django and is deployed on Heroku.
 
+
+![Database Schema!](README_ASSETS/database_schema.jpeg "This is the database schema")
+
+
+### Summary of the Schema Design
+#### Menu Management:
+
+The MenuItem model stores information about available dishes.
+
+#### Task Management:
+
+The Task model helps track important business tasks.
+
+#### User Feedback System:
+
+The Feedback model allows users to submit their opinions and suggestions.
+
+#### User Management:
+
+The built-in User model handles authentication and user data.
+
+ferenced in the Feedback model.
+
+#### MenuItem Model
+Table Name: menu_menuitem
+
+Fields:
+
+id (Primary Key): Auto-generated unique identifier for each menu item.
+name (CharField): The name of the dish (e.g., "Caesar Salad").
+description (TextField): A detailed description of the dish.
+price (DecimalField): The price of the dish, with up to 5 digits and 2 decimal places.
+image (ImageField): Stores the file path of the uploaded image (e.g., via Cloudinary).
+category (CharField): A predefined list of choices ('Main Course', 'Salad', 'Soup', 'Dessert').
+Relationships:
+
+No foreign key relationships, meaning it's an independent entity.
+Purpose:
+This model is used to store information about food items available on the restaurant's menu.
+
+#### Task Model
+
+Table Name: tasks_task
+
+Fields:
+
+id (Primary Key): Auto-generated unique identifier for each task.
+
+task_name (CharField): A short descriptive title of the task.
+
+task_description (TextField): A detailed description of the task.
+
+due_date (DateField): The deadline for completing the task.
+
+is_urgent (BooleanField): A flag to indicate whether the task is urgent or not (default is False).
+Relationships:
+
+No foreign key relationships; it operates independently.
+
+Purpose:
+
+This model is used to track and manage tasks related to the business operations, such as preparing orders, managing inventory, or administrative work.
+
+#### Feedback Model
+
+Table Name: feedback_feedback
+
+Fields:
+
+id (Primary Key): Auto-generated unique identifier for each feedback entry.
+
+user (ForeignKey to auth_user): A relationship linking the feedback to a registered user. If the user is deleted, their feedback is removed as well (on_delete=models.CASCADE).
+
+comment (TextField): Stores the feedback comment submitted by the user.
+
+created_at (DateTimeField): Automatically stores the timestamp when feedback is created.
+
+Relationships:
+
+One-to-Many with User: Each user can provide multiple feedback entries, but each feedback is linked to one user.
+
+Purpose:
+This model stores user feedback, which can help improve the restaurant services by collecting customer opinions.
+
+#### User Model (Django Built-in)
+
+Table Name: auth_user (Django default)
+
+Fields (key ones):
+
+id (Primary Key): Unique identifier for each user.
+username (CharField): The unique username for the user.
+password (CharField): Hashed password for authentication.
+email (EmailField): User's email address.
+Relationships:
+
+One-to-Many with Feedback: A user can submit multiple feedback entries.
+Purpose:
+Handles user authentication and management in the system.
+
+Relationships Overview
+
+One-to-Many (User -> Feedback):
+Each user can submit multiple feedback comments.
+
+Independent Models:
+
+The MenuItem and Task models do not have relationships with other tables but are useful for managing the restaurant's menu and operational tasks separately.
+
 ---
 
 ## [UX Description](#ux-description)
