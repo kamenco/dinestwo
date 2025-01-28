@@ -53,22 +53,27 @@ The Feedback model allows users to submit their opinions and suggestions.
 
 The built-in User model handles authentication and user data.
 
-ferenced in the Feedback model.
-
 #### MenuItem Model
 Table Name: menu_menuitem
 
 Fields:
 
 id (Primary Key): Auto-generated unique identifier for each menu item.
+
 name (CharField): The name of the dish (e.g., "Caesar Salad").
+
 description (TextField): A detailed description of the dish.
+
 price (DecimalField): The price of the dish, with up to 5 digits and 2 decimal places.
+
 image (ImageField): Stores the file path of the uploaded image (e.g., via Cloudinary).
+
 category (CharField): A predefined list of choices ('Main Course', 'Salad', 'Soup', 'Dessert').
+
 Relationships:
 
 No foreign key relationships, meaning it's an independent entity.
+
 Purpose:
 This model is used to store information about food items available on the restaurant's menu.
 
@@ -87,6 +92,7 @@ task_description (TextField): A detailed description of the task.
 due_date (DateField): The deadline for completing the task.
 
 is_urgent (BooleanField): A flag to indicate whether the task is urgent or not (default is False).
+
 Relationships:
 
 No foreign key relationships; it operates independently.
@@ -114,6 +120,7 @@ Relationships:
 One-to-Many with User: Each user can provide multiple feedback entries, but each feedback is linked to one user.
 
 Purpose:
+
 This model stores user feedback, which can help improve the restaurant services by collecting customer opinions.
 
 #### User Model (Django Built-in)
@@ -312,6 +319,7 @@ Lighthouse runs an audit of your website and feeds back a set of scores for acce
 ![Checked on lighthouse!](README_ASSETS/light_valid.png "Python validation")
 
 #### Manual Test Cases
+
 #### Navigation Links
 Expected:
 
@@ -465,6 +473,17 @@ This makes the menu accessible to only logged in users. @login_required enforces
 ![Task undefined issue!](README_ASSETS/crash.png  "Task undefined bug")
 This bug appeared because the Pillow has been installed but has not been freezed in the requirements.txt After adding Pillow to the requirements.txt the issue was resolved.
 
+Below the footer there is an empty space. The bug was resolved with bootstrap styling mt-auto.  
+
+          <footer class="container-fluid text-center mt-auto">
+
+![Footer bug!](README_ASSETS/footer_bug.png "Empty space below the footer.")
+
+After some time this bug resurfaced despite the previous fix with mt-auto. This might have happen for several reasons, such as layout changes in other parts site or conflicting styles elsewhere.
+
+The bug remains to be fixed with:
+
+Ensuring the HTML structure is properly set up with a flexbox-based or grid-based layout to allow mt-auto to behave correctly. To put the footer inside a container that stretches to fill the page height, with the footer pushed to the bottom.
 
 ---
 
