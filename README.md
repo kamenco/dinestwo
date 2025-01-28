@@ -314,6 +314,29 @@ Lighthouse runs an audit of your website and feeds back a set of scores for acce
 ---
 ## [Bugs and Issues](#bugs-and-issues)
 
+New bug appeared in the latest version of this site. The images can not be displayed. The problem lis in the database. The old postgresql database was migrated, and it had warnings that have been ignored. This database does not show the images.
+
+![Menu bug!](README_ASSETS/menu_bug.png "New bu appeared in the latest version.")
+
+Debugging from the shell Checking if any items have missing image URL.: 
+
+                  from menu.models import MenuItem
+                  for item in MenuItem.objects.all():
+                  print(item.name, item.image.url if item.image else "No image")
+
+                  This returns:
+
+![Menu bug!](README_ASSETS/terminal_output.png "The terminal output shows that the image URLs are present and displayed.")
+
+Additional debugging steps: Verifying Cloudinary storage setup. Checking if the images uploaded from the older version exist:
+
+![Menu bug!](README_ASSETS/cloudinary.png "The terminal output shows that the image URLs are present and displayed.")
+
+Seeing that the cloudinary files exist,  which means the problem is with the database, which has been migrated around the 28th December 2024. The presense of the old images shows it is a database issue. The problem could be solved with an old backup of the database (or a CSV export), to restore the missing data.
+
+![API keys on cloudinary!](README_ASSETS/api_keys.png "Shows that the API keys on cloudinary are active.")
+
+
 ![Bootstrap layout!](README_ASSETS/CARD_DISPL_BUG.png "Tried to use bootstrap card for the menu items.")
 
 Whe tryed to use bootsrap cards to display the menu items a bug happened, which displayes the original image way too big. The bug was resolved by resorting to plain CSS.
