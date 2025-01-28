@@ -473,6 +473,8 @@ This makes the menu accessible to only logged in users. @login_required enforces
 ![Task undefined issue!](README_ASSETS/crash.png  "Task undefined bug")
 This bug appeared because the Pillow has been installed but has not been freezed in the requirements.txt After adding Pillow to the requirements.txt the issue was resolved.
 
+### BUG REAPEARED
+
 Below the footer there is an empty space. The bug was resolved with bootstrap styling mt-auto.  
 
           <footer class="container-fluid text-center mt-auto">
