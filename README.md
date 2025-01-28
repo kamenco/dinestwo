@@ -311,7 +311,97 @@ Lighthouse runs an audit of your website and feeds back a set of scores for acce
 
 ![Checked on lighthouse!](README_ASSETS/light_valid.png "Python validation")
 
+#### Manual Test Cases
+#### Navigation Links
+Expected:
+
+When a user clicks on a navigation link, it should take them to the correct page without errors.
+
+Testing:
+Clicked on each navigation link (Home, About, Contact, etc.) from the navbar and footer.
+
+Result:
+
+Happy Flow: All links worked as expected and navigated to the correct pages. Except contact page.
+Exception Flow:
+The "Contact" link threw a 404 error due to a missing route in urls.py.
+Fix:
+Added the missing route for the "About" page in urls.py.
+
+#### Login Form
+Expected:
+The login form should allow a registered user to log in with valid credentials and display an error message for invalid credentials.
+
+Testing:
+
+Tested with valid credentials:
+Username: testuser, Password: testpassword.
+Tested with invalid credentials:
+Username: wronguser, Password: wrongpassword.
+Result:
+
+Happy Flow: The user was logged in successfully and redirected to the dashboard.
+Exception Flow:
+An error message "Invalid username or password" was displayed for invalid credentials (expected behavior).
+Form submission failed if left empty, showing validation errors.
+Fix:
+No fix required as the validation errors worked correctly.
+
+#### Update menu
+
+Expected: The updte_menu form should update the page with dish's name, recepie, price and image.
+
+Result: The name, recepie and price show correctly.
+
+Exception: The image does not show.
+
+![Menu bug!](README_ASSETS/img_problem.png "The console output shows that the image URLs instead of returning the image returns 404 html page not found .")
+
+
+The output in network console shows that instead f the image URL I see 404.html Page Nor Found. Seeing that the cloudinary files exist,  which means the problem is with the database, which has been migrated around the 28th December 2024. The presense of the old images shows it is a database issue. The problem could be solved with an old backup of the database (or a CSV export), to restore the missing data.
+
+#### Filter button on the menu page
+
+Expected:
+  To filter the dishes according to their purpose: main course, soup, desserts, all food.
+
+  Result:
+  
+    Happy flow:
+    The filter successfully displays the dishes according to their purpose.
+
+#### Feedback page:
+
+Expected: 
+  The user to type his/her feedback, and on submitting the form by the submit button, his/her feedback to be displayed with an option to delete the feedback.
+
+  Result:
+
+    Happy flow:
+    The user updates and deletes feedbacks successfully.
+
+#### Tasks page
+
+  Expected:
+    The owner(superuser) to add task, to be able to edit and delete the task. The task should be displayed as urgent or non urgent.
+
+  Result:
+
+    Happy flow:
+      The owner(superuser) adds, edits, and deletes task successfully.
+
+#### Contact page
+
+  Expected:
+    The user should be able to fill the form and make reservtion by sending it to the restaurant manager.
+
+  Result:
+
+    Happy flow:
+      The user sends the reservation form successfully.
+
 ---
+
 ## [Bugs and Issues](#bugs-and-issues)
 
 New bug appeared in the latest version of this site. The images can not be displayed. The problem lis in the database. The old postgresql database was migrated, and it had warnings that have been ignored. This database does not show the images.
